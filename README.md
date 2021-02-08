@@ -39,6 +39,10 @@ Wireframe.png
 
 # Architecture & Technology
 
+Not sure what my framework will look like
+Will most likely have a csv file holding each food's data
+Use reg text first then have something to click for visualizing nutrition facts
+
 # Implementation timeline
 
 # Bonus Features
