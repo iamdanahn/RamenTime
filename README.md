@@ -1,7 +1,5 @@
 # Background and Overview
 
-## Idea #1
-
 Data visualization of instant ramen and their nutrition facts
 
 # Functionality & MVPs
@@ -9,7 +7,6 @@ Data visualization of instant ramen and their nutrition facts
 - Display a carousel of ramen allowing a user to pick one
 - Selecting a ramen shows its nutrition facts
 - Show a bar chart with each nutrition to the Daily Rec Value
-- Display random ramen facts
 - Display amount of exercise required to burn calories
 
 # Wireframes
@@ -18,13 +15,16 @@ Data visualization of instant ramen and their nutrition facts
 
 # Architecture & Technology
 
-Not sure what my framework will look like
 Will most likely have a csv file holding each food's data
-Use reg text first then have something to click for visualizing nutrition facts
+D3 for bar chart: shows each nutritients daily value
+If over/under, show percentage
 
 # Implementation timeline
 
-Day 1 - Collect ramen nutrition facts and images. Organize into CSV files - Create Ramen Object and Nutrition Facts object
-Day 2 -
+Day 1 - Learn D3!
+Day 2 - Collect Ramen nutrition facts and images. Organize into CSV files. Create Ramen Object and Nutrition Facts object
+Day 3 - Connect D3 to Ramen, Nutrition Facts tables
 
 # Bonus Features
+
+- Display random ramen facts on bottom
