@@ -2,41 +2,19 @@
 
 ## Idea #1
 
-Data visualization of best ramen shops in NYC with their best ramen's nutrition facts
-
-## Idea #2
-
-Visual Animation using the mouse
-possible ideas: uncovers a hidden object (scratch off-ish), mouse over stationary points to make sounds
-
-## Idea #3
-
-Visual animation of car exhaust noises
+Data visualization of instant ramen and their nutrition facts
 
 # Functionality & MVPs
 
-## Idea #1
-
-- Shows a map outline with the restaurants location
-  - Visually will be minimalistic
-- Clicking a restaurant shows their best ramen and its nutrition facts
-  - Visual affect will be glamorous (if possible)
-
-## Idea #2
-
-- User will use the mouse to activate certain properties
-
-## Idea #3
-
-- User picks from several preselected vehicles to activate what its engine sounds like.
-- Will include an audio visual aspect, maybe lines along with colors
+- Display a carousel of ramen allowing a user to pick one
+- Selecting a ramen shows its nutrition facts
+- Show a bar chart with each nutrition to the Daily Rec Value
+- Display random ramen facts
+- Display amount of exercise required to burn calories
 
 # Wireframes
 
-## Idea #1
-
-![Wireframe.png](https://github.com/friesarecurly/JSProject/blob/main/Wireframe.png)
-
+![Wireframe.png](https://github.com/friesarecurly/JSProject/blob/main/Ramen_Wireframe.png)
 
 # Architecture & Technology
 
@@ -45,5 +23,8 @@ Will most likely have a csv file holding each food's data
 Use reg text first then have something to click for visualizing nutrition facts
 
 # Implementation timeline
+
+Day 1 - Collect ramen nutrition facts and images. Organize into CSV files - Create Ramen Object and Nutrition Facts object
+Day 2 -
 
 # Bonus Features
