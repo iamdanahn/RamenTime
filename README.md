@@ -35,7 +35,8 @@ Visual animation of car exhaust noises
 
 ## Idea #1
 
-Wireframe.png
+![Wireframe.png](https://github.com/friesarecurly/JSProject/blob/main/Wireframe.png)
+
 
 # Architecture & Technology
 
