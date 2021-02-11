@@ -1,50 +1,137 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const svg = d3
-    .select(".d3-exercise")
-    .append("rect")
-    .attr("x", 0)
-    .attr("y", 0)
-    .attr("width", 100)
-    .attr("height", 100)
-    .attr("fill", "blue")
-  // const margin = { top: 50, bottom: 150, left: 0, right: 25 }
-  // const width = 300
-  // const height = 650
+  d3.csv("../../assets/exercise.csv", (d) => {
+    debugger
+    return {
+      exercise: d.Exercise,
+      calories: +d.Calories,
+    }
+  }).then((data) => {
+    console.log(data)
+    const margin = { top: 50, bottom: 150, left: 0, right: 25 }
+    const width = 300
+    const height = 650
 
-  // const xScale = d3.scaleBand().range([0, width]).padding(0.1)
-  // const yScale = d3.scaleLinear().range([height, 0])
+    const x = d3
+      .scaleBand()
+      .domain(data.map((d) => d.exercise))
+      .range([0, width - margin.right])
+      .padding(0.1)
 
-  // const g = svg.append("g").attr("transform", `translate(100, 100)`)
+    const y = d3
+      .scaleLinear()
+      .domain([0, 15])
+      .nice()
+      .range([height - margin.bottom, margin.top])
 
-  // d3.csv("../../assets/exercise.csv", function (error, data) {
-  //   if (error) {
-  //     throw error
-  //   }
+    function xAxis(g) {
+      g.call(d3.axisBottom(x))
+        .attr("transform", `translate(0,${height - margin.bottom})`)
+        .attr("class", "xAxis exercise")
+        .selectAll("text")
+        .attr("transform", "rotate(-25)")
+    }
 
-  //   data.forEach(function (d) {
-  //     d.exercise = d.exercise
-  //     d.low = +d["Calories burned / min (low)"]
-  //     d.high = +d["Calories burned / min (high)"]
-  //   })
+    function yAxis(g) {
+      g.call(d3.axisRight(y))
+        .attr("class", "yAxis exercise")
+        .attr("transform", `translate(${width} ,0)`) // puts axis on right side
+    }
 
-  //   xScale.domain(data.map((d) => d.exercise))
-  //   yScale.domain([0, d3.max(data, (d) => d.high)])
+    const tip = d3
+      .tip()
+      .attr("class", "d3-tip")
+      .html((d) => {
+        return d.calories
+      })
 
-  //   g.append("g")
-  //     .attr("transform", `translate(0, ${height})`)
-  //     .call(d3.axisBottom(xScale))
+    const svg = d3
+      .select(".d3-exercise")
+      .append("svg")
+      .attr("viewBox", [0, 0, width, height])
+      .attr("preserveAspectRatio", "xMidYMid meet")
+      .attr("height", height - margin.top - margin.bottom) // chart height
+      .attr("width", width - margin.left - margin.right) // chart width
 
-  //   g.append("g")
-  //     .call(d3.axisLeft(yScale))
-  //     .tickFormat(d.high)
-  //     .append("text")
-  //     .attr("y", 6)
-  //     .attr("dy", "0.71em")
-  //     .attr("text-anchor", "end")
-  //     .text("value")
-  // })
+    svg.call(tip)
+
+    const bars = svg
+      .append("g")
+      // .attr("fill", "blue")
+      .selectAll("rect")
+      .data(data)
+      .join("rect")
+      .attr("class", "bar exercise")
+      .attr("x", (d) => x(d.exercise)) // spreads bars over x axis
+      .attr("y", (d) => y(d.calories))
+      .attr("height", (d) => y(0) - y(d.calories))
+      .attr("width", x.bandwidth())
+      .on("mouseover", tip.show)
+      .on("mouseout, tip.hide")
+
+    svg.append("g").call(xAxis)
+    svg.append("g").call(yAxis)
+    return svg.node()
+  })
 })
+//   const xScale = d3
+//     .scaleBand()
+//     .range([0, width])
+//     .padding(0.1)
+//     .domain(data.map((d) => d.exercise))
+//   const yScale = d3
+//     .scaleLinear()
+//     .range([height, 0])
+//     .domain([0, d3.max(data, (d) => d.calories)])
 
+//   const svg = d3
+//     .select(".d3-exercise")
+//     .attr("height", height - margin.top - margin.bottom) // chart height
+//     .attr("width", width - margin.left - margin.right) // chart width
+//     .attr("viewBox", [0, 0, width, height]) // creates the SVG box
+//     .attr("preserveAspectRatio", "xMidYMid meet") // preserves aspect ratio
+//   const xAxis = d3.axisBottom(xScale)
+//   // g.append("g")
+//   //   .attr("transform", `translate(0, ${width})`)
+//   //   .call(d3.axisBottom(xScale))
+
+//   const yAxis = d3.axisLeft(yScale).ticks(20)
+//   // g.append("g")
+//   //   .call(
+//   //     d3
+//   //       .axisLeft(yScale)
+//   //       .tickFormat((d) => d.calories)
+//   //       .ticks(10),
+//   //   )
+//   //   .append("text")
+//   //   .attr("y", 6)
+//   //   .attr("dy", "0.71em")
+//   //   .attr("text-anchor", "end")
+//   //   .text("value")
+
+//   const main = svg
+//     .append("g")
+//     .attr("transform", `translate(${margin.left}, ${margin.top})`)
+//     .attr("width", width)
+//     .attr("height", height)
+//     .attr("class", "main")
+
+//   main
+//     .append("g")
+//     .attr("transform", `translate(0, ${height})`)
+//     .attr("class", "main axis")
+//     .call(xAxis)
+
+//   main.append("g").attr("class", "main axis date").call(yAxis)
+// })
+///////////////////////////////////
+///////////////////////////////////
+///////////////////////////////////
+// .append("rect")
+// .attr("x", 10)
+// .attr("y", 10)
+// .attr("width", 100)
+// .attr("height", 100)
+// .attr("fill", "blue")
 // const width = 300
 // const height = 650
 // const margin = { top: 50, bottom: 150, left: 50, right: 50 }

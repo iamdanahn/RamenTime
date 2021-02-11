@@ -52,13 +52,12 @@ document.addEventListener("DOMContentLoaded", () => {
     // creates the bars
     const bars = svg
       .append("g") // adds group ele to svg ele
-      .attr("fill", "lightgreen")
-      .attr("mix-blend-mode", "multiply")
 
       .selectAll("rect") // selects all rectangles, if none found, creates empty selection
       .data(data) //.sort((a, b) => d3.descending(a.calories, b.calories)))
       .join("rect") // similar to .join((enter) => enter.append('rect'))
-      .attr("class", "bar") // adds classname, now can be modified in scss
+      .attr("class", "bar ramen") // adds classname, now can be modified in scss
+      .attr("mix-blend-mode", "multiply")
       .attr("x", (d) => x(d.type)) //, i) => x(i)) // places elements in order on x axis, d=data, i=index
       .attr("y", (d) => y(d.calories))
       .attr("height", (d) => y(0) - y(d.calories))

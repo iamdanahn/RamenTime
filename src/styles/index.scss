@@ -1,3 +1,7 @@
+html {
+  display: flex;
+  justify-content: center;
+}
 body {
   display: flex;
   justify-content: center;
@@ -5,6 +9,7 @@ body {
   flex-direction: column;
   font-family: Arial, Helvetica, sans-serif;
   background-color: white;
+  width: 1200px;
 }
 
 .ramen-list {
@@ -13,28 +18,11 @@ body {
 
 .main-body {
   display: flex;
+  width: 1000px;
 }
 
-.yText {
-  content: "Calories";
-}
-
-.ramen-list {
-  display: flex;
-  justify-content: center;
-  font-size: 25px;
-}
-
-.bar {
-  &:hover {
-    opacity: 0.66;
-    cursor: pointer;
-  }
-}
-
-.sorter {
-  display: flex;
-  cursor: pointer;
+.d3-ramen {
+  box-sizing: content-box;
 }
 
 footer {
