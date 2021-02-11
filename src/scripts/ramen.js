@@ -1,6 +1,3 @@
-import "./styles/index.scss"
-import "./styles/header.scss"
-
 // Baseline Nutrition Facts
 // Baseline 100%,2000,75,20,0,300,2300,275,28,0,0
 

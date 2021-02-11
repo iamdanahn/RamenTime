@@ -1,12 +1,12 @@
-const path = require("path");
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const outputDir = "./dist";
+const path = require("path")
+const MiniCssExtractPlugin = require("mini-css-extract-plugin")
+const outputDir = "./dist"
 
 module.exports = {
   entry: path.resolve(__dirname, "src", "index.js"),
   output: {
     path: path.join(__dirname, outputDir),
-    filename: "bundle.js",
+    filename: "[name].js",
     publicPath: "/dist/",
   },
   resolve: {
@@ -83,4 +83,4 @@ module.exports = {
     }),
     require("autoprefixer"),
   ],
-};
+}
