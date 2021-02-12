@@ -37,15 +37,18 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // use update as a function to use closures below
   function update(time) {
-    d3.csv("../../assets/exercise.csv", d => {
-      // sets getters to use in fn(update)
-      // iterates indiviudal datum of csv
-      return {
-        Exercise: d.Exercise,
-        Calories: +d.Calories,
-        Hour: +d.Hour,
-      }
-    }).then((data) => {
+    d3.csv(
+      "https://github.com/iamdanahn/RamenTime/blob/main/assets/exercise.csv",
+      (d) => {
+        // sets getters to use in fn(update)
+        // iterates indiviudal datum of csv
+        return {
+          Exercise: d.Exercise,
+          Calories: +d.Calories,
+          Hour: +d.Hour,
+        }
+      },
+    ).then((data) => {
       // promise success replies with whole data
 
       // domain == data values displayed

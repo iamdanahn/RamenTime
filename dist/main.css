@@ -1,3 +1,8 @@
-#ramen {
-  font-size: 40px;
-}
+html{display:flex;justify-content:center;background:rgba(231,231,231,0.89)}body{display:flex;align-items:center;flex-direction:column;font-family:Arial, Helvetica, sans-serif;background-color:white;width:1100px;height:95vh;margin-top:25px}.ramen-list{font-family:inherit}.main-body{display:flex;width:100%}.d3-ramen{box-sizing:border-box}footer{border:1px solid black;display:block}
+
+header{display:flex;justify-content:space-around;align-items:center;width:100%;height:100px;background:lightsteelblue}header .logo-container{display:flex;align-items:center}header .logo{width:15%;height:100%}header .h.links{display:flex;text-decoration:none;list-style:none;justify-content:space-between;width:100px}
+
+.d3-ramen{display:flex;flex-direction:column;justify-content:center}.d3-ramen h2{display:flex;justify-content:center}.d3-ramen label{position:relative;left:110px;width:140px}.yText{content:"Calories"}.ramen-list{display:flex;justify-content:center;font-size:25px}.sorter{display:flex;cursor:pointer}.d3-exercise{display:flex;flex-direction:column;justify-content:center}.d3-exercise h2{display:flex;justify-content:center}.d3-exercise .e-btn-cntr{display:flex;justify-content:space-around}.xAxis.exercise{font-size:20px}.xAxis.exercise .tick text{transform:rotate(-25);text-anchor:end}.yAxis.exercise{font-size:20px}.bar{fill:orange;mix-blend-mode:multiply}.bar:hover{opacity:0.66;cursor:pointer}.d3-tip{line-height:1;font-weight:bold;padding:10px;color:black;background-color:rgba(0,0,0,0.3);border-radius:2px;pointer-events:none;position:absolute}.d3-tip:after{box-sizing:border-box;display:inline;font-size:10px;width:100%;line-height:1;margin:20px}
+
+
+/*# sourceMappingURL=main.css.map*/

@@ -2,22 +2,25 @@
 // Baseline 100%,2000,75,20,0,300,2300,275,28,0,0
 
 document.addEventListener("DOMContentLoaded", () => {
-  d3.csv("../assets/nutrition_facts.csv", (d) => {
-    return {
-      brand: d.Brand,
-      type: d.Ramen,
-      calories: +d.Calories,
-      totalFat: +d["Total Fat (g)"],
-      sFat: +d["Saturated Fat (g)"],
-      tFat: +d["Trans Fat (g)"],
-      cholesterol: +d["Cholesterol (mg)"],
-      sodium: +d["Sodium (mg)"],
-      carbs: +d["Total Carbohydrates (g)"],
-      fiber: +d["Dietary Fiber (g)"],
-      sugars: +d.Sugars,
-      protein: +d.Protein,
-    }
-  }).then((data) => {
+  d3.csv(
+    "https://github.com/iamdanahn/RamenTime/blob/main/assets/nutrition_facts.csv",
+    (d) => {
+      return {
+        brand: d.Brand,
+        type: d.Ramen,
+        calories: +d.Calories,
+        totalFat: +d["Total Fat (g)"],
+        sFat: +d["Saturated Fat (g)"],
+        tFat: +d["Trans Fat (g)"],
+        cholesterol: +d["Cholesterol (mg)"],
+        sodium: +d["Sodium (mg)"],
+        carbs: +d["Total Carbohydrates (g)"],
+        fiber: +d["Dietary Fiber (g)"],
+        sugars: +d.Sugars,
+        protein: +d.Protein,
+      }
+    },
+  ).then((data) => {
     render(data)
     console.log(data)
   })
