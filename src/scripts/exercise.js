@@ -84,12 +84,11 @@ document.addEventListener("DOMContentLoaded", () => {
         // .transition()
         // .duration(500)
         .attr("x", (d) => x(d.Exercise))
-        .attr("y", (d) => y(d[`${time}`]))
-        .attr("width", x.bandwidth())
-        .attr("height", (d) => y(0) - y(d[`${time}`]))
+        .attr("y", (d) => y(0)) // y axis all set to y(0), in this case 500
+        .attr("width", x.bandwidth()) 
+        .attr("height", (d) => 0) // set height to 0 for animation below
 
       svg
-        
         .selectAll("rect")
         .on("mouseover", (e, d) => {
           tip.transition().duration(300).style("opacity", 0.8)
@@ -112,20 +111,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
       // svg.selectAll("rect").transition().duration(1000)
 
-      // svg.selectAll("rect")
-      //   .transition()
-      //   .duration(800)
-      //   .attr("y", function (d) {
-      //     return y([`${time}`])
-      //   })
-      //   .attr("height", function (d) {
-      //     return y(0)-y([`${time}`])
-      //   })
-
-      // .delay(function (d, i) {
-      //   console.log(i)
-      //   return i * 100
-      // })
+      svg
+        .selectAll("rect")
+        .transition()
+        .duration(800)
+        .attr("y", (d) => y(d[`${time}`]))
+        .attr("height", (d) => y(0) - y(d[`${time}`]))
+        .delay(function (d, i) {
+          console.log(i)
+          return i * 100
+        })
 
       u.exit().remove()
     })
