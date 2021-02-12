@@ -1,8 +1,8 @@
 // Using Mike Bostock's Towards Reusable Charts Pattern
 function barChart() {
   // All options that should be accessible to caller
-  var width = 900
-  var height = 200
+  var width = 300
+  var height = 900
   var barPadding = 1
   var fillColor = "steelblue"
 

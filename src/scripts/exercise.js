@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }).then((data) => {
     console.log(data)
-    const margin = { top: 50, bottom: 150, left: -50, right: 0 }
+    const margin = { top: 50, bottom: 150, left: -50, right: 10 }
     const width = 400
     const height = 650
 
@@ -75,4 +75,8 @@ document.addEventListener("DOMContentLoaded", () => {
     svg.append("g").call(yAxis)
     return svg.node()
   })
+})
+
+document.addEventListener("click", (e) => {
+  console.log(e)
 })

@@ -4,6 +4,7 @@
 document.addEventListener("DOMContentLoaded", () => {
   d3.csv("../assets/nutrition_facts.csv", (d) => {
     return {
+      brand: d.Brand,
       type: d.Ramen,
       calories: +d.Calories,
       totalFat: +d["Total Fat (g)"],
@@ -23,7 +24,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // data xfer from d4.csv promise
   const render = (data) => {
-    const width = 800
+    const width = 700
     const height = 650
     const margin = { top: 50, bottom: 150, left: 20, right: 0 }
 
@@ -56,11 +57,6 @@ document.addEventListener("DOMContentLoaded", () => {
       .append("div")
       .style("opacity", 0)
       .attr("class", "d3-tip ramen")
-    // .html((event, d) => {
-    //   return `calories: ${d.calories} <br/>
-    //     total fat: ${d.totalFat}
-    //   `
-    // })
 
     // creates the bars
     const bars = svg
@@ -70,30 +66,33 @@ document.addEventListener("DOMContentLoaded", () => {
       .data(data) //.sort((a, b) => d3.descending(a.calories, b.calories)))
       .join("rect") // similar to .join((enter) => enter.append('rect'))
       .attr("class", "bar ramen") // adds classname, now can be modified in scss
-      .attr("mix-blend-mode", "multiply")
       .attr("x", (d) => x(d.type)) //, i) => x(i)) // places elements in order on x axis, d=data, i=index
       .attr("y", (d) => y(d.calories))
       .attr("height", (d) => y(0) - y(d.calories))
       .attr("width", x.bandwidth()) // calcs thickness of bars
       .on("mouseover", (e, d) => {
         // e == mouse event
-        tip.transition().style("opacity", 0.8)
+        tip.transition().duration(300).style("opacity", 0.8)
         console.log(e)
         console.log(d)
         tip
           .html(
-            `calories: ${d.calories} <br/>
-           total fat: ${d.totalFat} <br/>
+            `Brand: ${d.brand} <br/>
+           Total fat: ${d.totalFat} <br/>
          `,
           )
-          .style("left", `${e.layerX}px`)
-          .style("top", `${e.layerY}px`)
+          .style("left", `${e.clientX}px`)
+          .style("top", `${e.clientY}px`)
       })
-      .on("mouseover", (e, d) => {
-        tip.style("left", `${e.layerX}px`).style("top", `${e.layerY}px`)
+      .on("mousemove", (e, d) => {
+        // console.log(e)
+        // console.log(d)
+        tip.style("left", `${e.clientX}px`).style("top", `${e.clientY - 50}px`)
       })
-      .on("mouseout", () => {
-        tip.transition().style("opactiy", 0)
+      .on("mouseout", (e, d) => {
+        console.log(e)
+        console.log(d)
+        tip.transition().duration(100).style("opacity", 0)
       })
 
       .attr("value", (d, i) => d.type)
