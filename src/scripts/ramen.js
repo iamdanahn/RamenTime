@@ -35,7 +35,7 @@ document.addEventListener("DOMContentLoaded", () => {
       .attr("viewBox", [0, 0, width, height]) // creates the SVG box
       .attr("preserveAspectRatio", "xMidYMid meet") // preserves aspect ratio
       .attr("height", height - margin.top - margin.bottom) // chart height
-      .attr("width", width  ) // chart width
+      .attr("width", width) // chart width
 
     // creates x scale
     const x = d3
@@ -44,12 +44,36 @@ document.addEventListener("DOMContentLoaded", () => {
       .padding(0.1) // reg css padding
       .domain(data.map((d) => d.type)) //d3.range(data.length)) // dynamic range of elements
 
+    // label on bottom
+    function xAxis(g) {
+      debugger
+      g.call(d3.axisBottom(x))
+        .attr("class", "xText")
+        .attr("font-size", "20px") // original font was too small
+        .attr("transform", `translate(0, ${height - margin.bottom})`) // x-axis line was showing on top
+        .selectAll("text")
+        .transition()
+        .duration(1000)
+        .attr("transform", "rotate(-25)")
+        .attr("text-anchor", "end")
+    }
+    svg.append("g").call(xAxis)
+
     // create y scale
     const y = d3
       .scaleLinear() // scales your data to range size
       .range([height - margin.bottom, margin.top]) // y axis range
       .domain([0, d3.max(data, (d) => d.calories)]) // y axis scaling
       .nice() // adds remaining top tick if left out
+
+    // label on left
+    function yAxis(g) {
+      g.call(d3.axisLeft(y)) //.ticks(null, data.format))
+        .attr("font-size", "15px")
+        .append("text")
+        .attr("class", "yText")
+    }
+    svg.append("g").call(yAxis)
 
     // tooltip above bar
     const tip = d3
@@ -67,9 +91,22 @@ document.addEventListener("DOMContentLoaded", () => {
       .join("rect") // similar to .join((enter) => enter.append('rect'))
       .attr("class", "bar ramen") // adds classname, now can be modified in scss
       .attr("x", (d) => x(d.type)) //, i) => x(i)) // places elements in order on x axis, d=data, i=index
+      .attr("width", x.bandwidth()) // calcs thickness of bars
+      .attr("y", (d) => y(0))
+      .attr("height", (d) => 0)
+
+    svg
+      .selectAll("rect")
+      .transition()
+      .duration(800)
       .attr("y", (d) => y(d.calories))
       .attr("height", (d) => y(0) - y(d.calories))
-      .attr("width", x.bandwidth()) // calcs thickness of bars
+      .delay(function (d, i) {
+        return i * 100
+      })
+
+    svg
+      .selectAll("rect")
       .on("mouseover", (e, d) => {
         // e == mouse event
         tip.transition().duration(300).style("opacity", 0.8)
@@ -101,38 +138,11 @@ document.addEventListener("DOMContentLoaded", () => {
         // console.log(d)
         tip.transition().duration(100).style("opacity", 0)
       })
-
+      // used for testing
       .attr("value", (d, i) => d.type)
       .on("click", (d) => console.log(d.toElement.__data__.type))
 
-    // bind tip to the svg
-    // svg.call(tip)
-
-    // label on bottom
-    function xAxis(g) {
-      debugger
-      g
-      .call(d3.axisBottom(x))
-        .attr("class", "xText")
-        .attr("font-size", "20px") // original font was too small
-        .attr("transform", `translate(0, ${height - margin.bottom})`) // x-axis line was showing on top
-      .selectAll("text")
-        .transition()
-        .duration(1000)
-        .attr("transform", "rotate(-25)")
-        .attr("text-anchor", "end")
-    }
-    svg.append("g").call(xAxis)
-
-    // label on left
-    function yAxis(g) {
-      g.call(d3.axisLeft(y)) //.ticks(null, data.format))
-        .attr("font-size", "15px")
-        .append("text")
-        .attr("class", "yText")
-    }
-    svg.append("g").call(yAxis)
-
+    // Calories label on left side
     svg
       .append("text")
       .attr("class", "label ramenY")
@@ -140,7 +150,6 @@ document.addEventListener("DOMContentLoaded", () => {
       .attr("y", -width * 0.1)
       .attr("transform", "rotate(-90)")
       .attr("text-anchor", "middle")
-
       .text("Calories")
       .attr("font-size", "25px")
 
@@ -192,8 +201,6 @@ document.addEventListener("DOMContentLoaded", () => {
       transition.select(".xText").call(xAxis).selectAll("g").delay(delay)
     }
 
-    // svg.append("g").call(xAxis)
-    // svg.append("g").call(yAxis)
     svg.node()
   }
 })

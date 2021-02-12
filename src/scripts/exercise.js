@@ -75,8 +75,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       // when
       const u = svg.selectAll("rect").data(data)
-      const e = d3.event
-
+      u.exit().remove()
       u.enter()
         .append("rect")
         .attr("class", "bar exercise")
@@ -85,7 +84,7 @@ document.addEventListener("DOMContentLoaded", () => {
         // .duration(500)
         .attr("x", (d) => x(d.Exercise))
         .attr("y", (d) => y(0)) // y axis all set to y(0), in this case 500
-        .attr("width", x.bandwidth()) 
+        .attr("width", x.bandwidth())
         .attr("height", (d) => 0) // set height to 0 for animation below
 
       svg
@@ -117,10 +116,10 @@ document.addEventListener("DOMContentLoaded", () => {
         .duration(800)
         .attr("y", (d) => y(d[`${time}`]))
         .attr("height", (d) => y(0) - y(d[`${time}`]))
-        .delay(function (d, i) {
-          console.log(i)
-          return i * 100
-        })
+      // .delay(function (d, i) {
+      //   console.log(i)
+      //   return i * 100
+      // })
 
       u.exit().remove()
     })
