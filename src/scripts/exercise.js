@@ -38,15 +38,15 @@ document.addEventListener("DOMContentLoaded", () => {
   // use update as a function to use closures below
   function update(time) {
     d3.csv("../../assets/exercise.csv", d => {
-      debugger
+      // debugger
       return {
-        exercise: d.Exercise,
-        minuteCal: d.Calories,
-        hourCal: d.Hour
+        Exercise: d.Exercise,
+        Calories: +d.Calories,
+        Hour: +d.Hour,
       }
     }).then((data) => {
-      debugger
-      x.domain(data.map((d) => d.exercise))
+      // debugger
+      x.domain(data.map((d) => d.Exercise))
       xAxis
         .transition()
         .duration(1000)
@@ -59,7 +59,7 @@ document.addEventListener("DOMContentLoaded", () => {
         0,
         d3.max(data, function (d) {
           debugger
-          return +d[`${time}`]
+          return d[`${time}`]
         }),
       ]).nice()
       yAxis.transition().duration(1000).call(d3.axisRight(y))
@@ -82,20 +82,20 @@ document.addEventListener("DOMContentLoaded", () => {
         .attr("y", (d) => y(d[`${time}`]))
         .attr("width", x.bandwidth())
         .attr("height", (d) => y(0) - y(d[`${time}`]))
-        .on("mouseover", (d, i) => {
+        .on("mouseover", (e, d) => {
           tip.transition().duration(300).style("opacity", 0.8)
           tip
             .html(
               `Exercise: ${d.Exercise} <br/>
               Calories: ${+d[`${time}`]} <br/>`,
             )
-            .style("left", `${d3.event.clientX - 50}px`)
-            .style("top", `${d3.event.clientY}px`)
+            .style("left", `${e.clientX - 50}px`)
+            .style("top", `${e.clientY}px`)
         })
-        .on("mousemove", (d) => {
+        .on("mousemove", (e) => {
           tip
-            .style("left", `${d3.event.clientX - 100}px`)
-            .style("top", `${d3.event.clientY - 50}px`)
+            .style("left", `${e.clientX - 100}px`)
+            .style("top", `${e.clientY - 50}px`)
         })
         .on("mouseout", (d) => {
           tip.transition().duration(100).style("opacity", 0)
@@ -119,7 +119,6 @@ document.addEventListener("DOMContentLoaded", () => {
       // })
 
       u.exit().remove()
-      
     })
   }
 
