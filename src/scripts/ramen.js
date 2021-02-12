@@ -48,14 +48,19 @@ document.addEventListener("DOMContentLoaded", () => {
       .scaleLinear() // scales your data to range size
       .range([height - margin.bottom, margin.top]) // y axis range
       .domain([0, d3.max(data, (d) => d.calories)]) // y axis scaling
+      .nice() // adds remaining top tick if left out
 
     // tooltip above bar
     const tip = d3
-      .tip()
+      .select("body")
+      .append("div")
+      .style("opacity", 0)
       .attr("class", "d3-tip ramen")
-      .html((event, d) => {
-        return d.calories
-      })
+    // .html((event, d) => {
+    //   return `calories: ${d.calories} <br/>
+    //     total fat: ${d.totalFat}
+    //   `
+    // })
 
     // creates the bars
     const bars = svg
@@ -70,13 +75,33 @@ document.addEventListener("DOMContentLoaded", () => {
       .attr("y", (d) => y(d.calories))
       .attr("height", (d) => y(0) - y(d.calories))
       .attr("width", x.bandwidth()) // calcs thickness of bars
-      .on("mouseover", tip.show)
-      .on("mouseout", tip.hide)
+      .on("mouseover", (e, d) => {
+        // e == mouse event
+        tip.transition().style("opacity", 0.8)
+        console.log(e)
+        console.log(d)
+        tip
+          .html(
+            `calories: ${d.calories} <br/>
+           total fat: ${d.totalFat} <br/>
+         `,
+          )
+          .style("left", `${e.layerX}px`)
+          .style("top", `${e.layerY}px`)
+      })
+      .on("mouseover", (e, d) => {
+        tip.style("left", `${e.layerX}px`).style("top", `${e.layerY}px`)
+      })
+      .on("mouseout", () => {
+        tip.transition().style("opactiy", 0)
+      })
 
       .attr("value", (d, i) => d.type)
       .on("click", (d) => console.log(d.toElement.__data__.type))
 
-    svg.call(tip)
+    // bind tip to the svg
+    // svg.call(tip)
+
     // label on bottom
     function xAxis(g) {
       debugger
