@@ -12,8 +12,7 @@
     />
 
     <link rel="stylesheet" href="./dist/main.css" />
-    <script src="https://d3js.org/d3.v6.min.js"></script>
-    <script src="https://unpkg.com/d3-v6-tip@1.0.6/build/d3-v6-tip.js"></script>
+    <script src="https://d3js.org/d3.v4.js"></script>
     <script src="./dist/main.js" type="text/javascript"></script>
   </head>
   <body>
@@ -46,8 +45,19 @@
         Top row containing ramen choices
       </div>
       <div class="main-body">
-        <div class="d3-ramen">Ramen Nutrition Facts</div>
-        <div class="d3-exercise">Calories burned / minute</div>
+        <div class="d3-ramen">
+        <h2>
+          Ramen Nutrition Facts
+        </h2>
+        </div>
+        <div class="d3-exercise">
+          <h2>
+            Calories burned
+          </h2>
+          <button class="btn-exercise" value="Calories">Minute</button>
+          <!-- <button class="btn-exercise" value="Half" >Half hour</button> -->
+          <button class="btn-exercise" value="Hour" >Hour</button>
+        </div>
       </div>
 
       <label class="sorter">
