@@ -18,11 +18,11 @@ body {
 
 .main-body {
   display: flex;
-  width: 1000px;
+  width: 100%;
 }
 
 .d3-ramen {
-  box-sizing: content-box;
+  box-sizing: border-box;
 }
 
 footer {

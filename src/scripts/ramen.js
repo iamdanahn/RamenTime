@@ -25,7 +25,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const render = (data) => {
     const width = 800
     const height = 650
-    const margin = { top: 50, bottom: 150, left: 50, right: 25 }
+    const margin = { top: 50, bottom: 150, left: 20, right: 0 }
 
     // creates svg element
     const svg = d3
@@ -49,6 +49,14 @@ document.addEventListener("DOMContentLoaded", () => {
       .range([height - margin.bottom, margin.top]) // y axis range
       .domain([0, d3.max(data, (d) => d.calories)]) // y axis scaling
 
+    // tooltip above bar
+    const tip = d3
+      .tip()
+      .attr("class", "d3-tip ramen")
+      .html((event, d) => {
+        return d.calories
+      })
+
     // creates the bars
     const bars = svg
       .append("g") // adds group ele to svg ele
@@ -62,17 +70,13 @@ document.addEventListener("DOMContentLoaded", () => {
       .attr("y", (d) => y(d.calories))
       .attr("height", (d) => y(0) - y(d.calories))
       .attr("width", x.bandwidth()) // calcs thickness of bars
-
-      .append("text")
-      .attr("class", "values")
-      .attr("x", (d) => x.bandwidth() / 2)
-      .attr("y", (d) => y(d.calories) + 30)
-      .attr("text-anchor", "middle")
-      .text((d) => d.calories)
+      .on("mouseover", tip.show)
+      .on("mouseout", tip.hide)
 
       .attr("value", (d, i) => d.type)
       .on("click", (d) => console.log(d.toElement.__data__.type))
 
+    svg.call(tip)
     // label on bottom
     function xAxis(g) {
       debugger

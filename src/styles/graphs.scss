@@ -1,4 +1,4 @@
-// Ramen graph
+// RAMEN GRAPH
 
 .yText {
   content: "Calories";
@@ -15,7 +15,7 @@
   cursor: pointer;
 }
 
-// Exercise graph
+// EXERCISE GRAPH
 .xAxis.exercise {
   font-size: 20px;
 
@@ -35,5 +35,31 @@
   &:hover {
     opacity: 0.66;
     cursor: pointer;
+  }
+}
+
+//TOOLTIP
+
+.d3-tip.exercise {
+  line-height: 1;
+  font-weight: bold;
+  padding: 5px;
+  color: black;
+  border-radius: 2px;
+  pointer-events: none;
+
+  &:after {
+    box-sizing: border-box;
+    display: inline;
+    position: absolute;
+    font-size: 10px;
+    width: 100%;
+    line-height: 1;
+    margin: -12px;
+    content: "\25BC";
+    margin: -1px 0 0 0;
+    top: 70%;
+    left: 0;
+    text-align: center;
   }
 }

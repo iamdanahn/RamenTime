@@ -7,8 +7,8 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }).then((data) => {
     console.log(data)
-    const margin = { top: 50, bottom: 150, left: 0, right: 25 }
-    const width = 300
+    const margin = { top: 50, bottom: 150, left: -50, right: 0 }
+    const width = 400
     const height = 650
 
     const x = d3
@@ -37,10 +37,13 @@ document.addEventListener("DOMContentLoaded", () => {
         .attr("transform", `translate(${width} ,0)`) // puts axis on right side
     }
 
+    // tooltip popup
+    // d3-tip event handlers rcv "event" as 1st arg
+    //
     const tip = d3
       .tip()
-      .attr("class", "d3-tip")
-      .html((d) => {
+      .attr("class", "d3-tip exercise")
+      .html((event, d) => {
         return d.calories
       })
 
@@ -52,11 +55,9 @@ document.addEventListener("DOMContentLoaded", () => {
       .attr("height", height - margin.top - margin.bottom) // chart height
       .attr("width", width - margin.left - margin.right) // chart width
 
-    svg.call(tip)
-
     const bars = svg
       .append("g")
-      // .attr("fill", "blue")
+
       .selectAll("rect")
       .data(data)
       .join("rect")
@@ -66,8 +67,10 @@ document.addEventListener("DOMContentLoaded", () => {
       .attr("height", (d) => y(0) - y(d.calories))
       .attr("width", x.bandwidth())
       .on("mouseover", tip.show)
-      .on("mouseout, tip.hide")
+      .on("mouseout", tip.hide)
 
+    // call area to render features
+    svg.call(tip)
     svg.append("g").call(xAxis)
     svg.append("g").call(yAxis)
     return svg.node()
