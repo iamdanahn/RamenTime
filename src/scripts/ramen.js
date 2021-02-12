@@ -73,8 +73,8 @@ document.addEventListener("DOMContentLoaded", () => {
       .on("mouseover", (e, d) => {
         // e == mouse event
         tip.transition().duration(300).style("opacity", 0.8)
-        console.log(e)
-        console.log(d)
+        // console.log(e)
+        // console.log(d)
         tip
           .html(
             `Brand: ${d.brand} <br/>
@@ -90,8 +90,8 @@ document.addEventListener("DOMContentLoaded", () => {
         tip.style("left", `${e.clientX}px`).style("top", `${e.clientY - 50}px`)
       })
       .on("mouseout", (e, d) => {
-        console.log(e)
-        console.log(d)
+        // console.log(e)
+        // console.log(d)
         tip.transition().duration(100).style("opacity", 0)
       })
 

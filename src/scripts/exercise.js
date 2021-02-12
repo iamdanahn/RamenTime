@@ -37,9 +37,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // use update as a function to use closures below
   function update(time) {
-    d3.csv("../../assets/exercise.csv", function (data) {
+    d3.csv("../../assets/exercise.csv", d => {
       debugger
-      x.domain(data.map((d) => d.Exercise))
+      return {
+        exercise: d.Exercise,
+        minuteCal: d.Calories,
+        hourCal: d.Hour
+      }
+    }).then((data) => {
+      debugger
+      x.domain(data.map((d) => d.exercise))
       xAxis
         .transition()
         .duration(1000)
@@ -112,6 +119,7 @@ document.addEventListener("DOMContentLoaded", () => {
       // })
 
       u.exit().remove()
+      
     })
   }
 
