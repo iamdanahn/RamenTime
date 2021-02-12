@@ -4,8 +4,7 @@
 
 document.addEventListener("DOMContentLoaded", () => {
   d3.csv("../assets/nutrition_facts.csv", function(data) {
-
-    data.forEach(d => {
+    data.forEach((d) => {
       debugger
       return {
         brand: d.Brand,
@@ -23,32 +22,49 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     })
 
-    const width = 700
+    const width = 750
     const height = 650
-    const margin = { top: 50, bottom: 150, left: 20, right: 0 }
+    const margin = { top: 50, bottom: 150, left: 50, right: 50 }
 
     // creates svg element
     const svg = d3
       .select(".d3-ramen")
       .append("svg") // adds svg ele as child to d3-div
-        .attr("viewBox", [0, 0, width, height]) // creates the SVG box
-        .attr("preserveAspectRatio", "xMidYMid meet") // preserves aspect ratio
-        .attr("height", height - margin.top - margin.bottom) // chart height
-        .attr("width", width - margin.left - margin.right) // chart width
+      .attr("viewBox", [0, 0, width, height]) // creates the SVG box
+      .attr("preserveAspectRatio", "xMidYMid meet") // preserves aspect ratio
+      .attr("height", height - margin.top - margin.bottom) // chart height
+      .attr("width", width - margin.left - margin.right) // chart width
 
     // creates x scale
-    const x = d3.scaleBand() // creates "bands"/columns
+    const x = d3
+      .scaleBand() // creates "bands"/columns
       .range([margin.left / 2, width - margin.right]) // x axis range
       .padding(0.1) // reg css padding
       .domain(data.map((d) => d.type)) //d3.range(data.length)) // dynamic range of elements
 
     // create y scale
     const y = d3
-      
       .scaleLinear() // scales your data to range size
       .range([height - margin.bottom, margin.top]) // y axis range
       .domain([0, d3.max(data, (d) => d.calories)]) // y axis scaling
       .nice() // adds remaining top tick if left out, insert after domain
+
+    // label on bottom
+    svg.append("g")
+      .attr("transform", `translate(0, ${height - margin.bottom})`) // x-axis line was showing on top
+      .call(d3.axisBottom(x)) // controls which side of the axis text shows
+        .attr("class", "xText")
+        .attr("font-size", "20px") // original font was too small
+      .selectAll("text")
+        .attr("transform", "rotate(-25)")
+        .attr("text-anchor", "end")
+
+    // label on left
+    svg.append("g")
+    .call(d3.axisLeft(y)) //.ticks(null, data.format))
+      .attr("font-size", "15px")
+    
+    const yLines = () => d3.axisLeft().scale(y)
 
     // tooltip above bar
     const tip = d3
@@ -59,15 +75,22 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // creates the bars
     const bars = svg
-      .append("g") // adds group ele to svg ele
-
       .selectAll("rect") // selects all rectangles, if none found, creates empty selection
       .data(data) //.sort((a, b) => d3.descending(a.calories, b.calories)))
-      .join("rect") // similar to .join((enter) => enter.append('rect'))
+      .enter()
+      .append("g") // adds group ele to svg ele
+
+    bars
+      .append("rect") // similar to .join((enter) => enter.append('rect'))
       .attr("class", "bar ramen") // adds classname, now can be modified in scss
       .attr("x", (d) => x(d.type)) //, i) => x(i)) // places elements in order on x axis, d=data, i=index
-      .attr("y", (d) => y(d.calories))
-      .attr("height", (d) => y(0) - y(d.calories))
+      .attr("y", (d) => {
+        debugger
+        y(d.calories)
+      })
+      .attr("height", (d) => {
+        debugger
+        y(0) - y(d.calories)})
       .attr("width", x.bandwidth()) // calcs thickness of bars
       .on("mouseover", (e, d) => {
         // e == mouse event
@@ -101,29 +124,7 @@ document.addEventListener("DOMContentLoaded", () => {
         console.log(update)
       })
 
-
-
-    // label on bottom
-    function xAxis(g) {
-      debugger
-      g.call(d3.axisBottom(x)) // controls which side of the axis text shows
-        .attr("class", "xText")
-        .attr("font-size", "20px") // original font was too small
-        .attr("transform", `translate(0, ${height - margin.bottom})`) // x-axis line was showing on top
-        .selectAll("text")
-        .attr("transform", "rotate(-25)")
-        .attr("text-anchor", "end")
-    }
-    svg.append("g").call(xAxis)
-
-    // label on left
-    function yAxis(g) {
-      g.call(d3.axisLeft(y)) //.ticks(null, data.format))
-        .attr("font-size", "15px")
-        .append("text")
-        .attr("class", "yText")
-    }
-    svg.append("g").call(yAxis)
+    bars.selectAll("rect").transition().duration(500)
 
     svg
       .append("text")
@@ -148,7 +149,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
       debugger
       const newX = x
-        .domain(data.sort(this.checked
+        .domain(
+          data
+            .sort(
+              this.checked
                 ? (a, b) => {
                     return b.calories - a.calories
                   }
@@ -180,7 +184,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
       transition.select(".xText").call(xAxis).selectAll("g").delay(delay)
     }
-
 
     svg.node()
   })
