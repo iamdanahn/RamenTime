@@ -3,7 +3,7 @@
 
 document.addEventListener("DOMContentLoaded", () => {
   d3.csv(
-    "https://github.com/iamdanahn/RamenTime/blob/main/assets/nutrition_facts.csv",
+    "https://raw.githubusercontent.com/iamdanahn/RamenTime/main/assets/nutrition_facts.csv",
     (d) => {
       return {
         brand: d.Brand,

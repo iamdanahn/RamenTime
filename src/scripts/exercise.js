@@ -38,7 +38,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // use update as a function to use closures below
   function update(time) {
     d3.csv(
-      "https://github.com/iamdanahn/RamenTime/blob/main/assets/exercise.csv",
+      "https://raw.githubusercontent.com/iamdanahn/RamenTime/main/assets/exercise.csv",
       (d) => {
         // sets getters to use in fn(update)
         // iterates indiviudal datum of csv
