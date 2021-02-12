@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const margin = { top: 50, bottom: 150, left: 10, right: 10 }
+  const margin = { top: 50, bottom: 150, left: -100, right: 30 }
   const width = 400
   const height = 650
 
@@ -29,7 +29,7 @@ document.addEventListener("DOMContentLoaded", () => {
     .append("text")
     .attr("class", "label")
     .attr("x", height / 2.5)
-    .attr("y", -width - margin.right * 5)
+    .attr("y", -width * 1.1)
     .attr("transform", "rotate(90)")
     .attr("text-anchor", "middle")
     .text("Calories")
@@ -38,14 +38,17 @@ document.addEventListener("DOMContentLoaded", () => {
   // use update as a function to use closures below
   function update(time) {
     d3.csv("../../assets/exercise.csv", d => {
-      // debugger
+      // sets getters to use in fn(update)
+      // iterates indiviudal datum of csv
       return {
         Exercise: d.Exercise,
         Calories: +d.Calories,
         Hour: +d.Hour,
       }
     }).then((data) => {
-      // debugger
+      // promise success replies with whole data
+
+      // domain == data values displayed
       x.domain(data.map((d) => d.Exercise))
       xAxis
         .transition()
@@ -62,7 +65,7 @@ document.addEventListener("DOMContentLoaded", () => {
           return d[`${time}`]
         }),
       ]).nice()
-      yAxis.transition().duration(1000).call(d3.axisRight(y))
+      yAxis.transition().duration(500).call(d3.axisRight(y))
 
       const tip = d3
         .select("body")
@@ -78,10 +81,16 @@ document.addEventListener("DOMContentLoaded", () => {
         .append("rect")
         .attr("class", "bar exercise")
         .merge(u)
+        // .transition()
+        // .duration(500)
         .attr("x", (d) => x(d.Exercise))
         .attr("y", (d) => y(d[`${time}`]))
         .attr("width", x.bandwidth())
         .attr("height", (d) => y(0) - y(d[`${time}`]))
+
+      svg
+        
+        .selectAll("rect")
         .on("mouseover", (e, d) => {
           tip.transition().duration(300).style("opacity", 0.8)
           tip

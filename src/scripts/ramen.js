@@ -26,7 +26,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const render = (data) => {
     const width = 700
     const height = 650
-    const margin = { top: 50, bottom: 150, left: 20, right: 0 }
+    const margin = { top: 50, bottom: 150, left: 20, right: -100 }
 
     // creates svg element
     const svg = d3
@@ -35,7 +35,7 @@ document.addEventListener("DOMContentLoaded", () => {
       .attr("viewBox", [0, 0, width, height]) // creates the SVG box
       .attr("preserveAspectRatio", "xMidYMid meet") // preserves aspect ratio
       .attr("height", height - margin.top - margin.bottom) // chart height
-      .attr("width", width - margin.left - margin.right) // chart width
+      .attr("width", width  ) // chart width
 
     // creates x scale
     const x = d3
@@ -78,7 +78,14 @@ document.addEventListener("DOMContentLoaded", () => {
         tip
           .html(
             `Brand: ${d.brand} <br/>
-           Total fat: ${d.totalFat} <br/>
+           Total fat(g): ${d.totalFat} <br/>
+           Saturated fat(g): ${d.sFat} <br/>
+           Trans fat(g): ${d.tFat} <br/>
+           Cholesterol (mg): ${d.cholesterol} <br/>
+           Sodium (mg): ${d.sodium} <br/>
+           Dietary Fiber (g): ${d.fiber} <br/>
+           Sugar (g): ${d.sugars} <br/>
+           Protein (g): ${d.protein} <br/>
          `,
           )
           .style("left", `${e.clientX}px`)
@@ -104,11 +111,14 @@ document.addEventListener("DOMContentLoaded", () => {
     // label on bottom
     function xAxis(g) {
       debugger
-      g.call(d3.axisBottom(x))
+      g
+      .call(d3.axisBottom(x))
         .attr("class", "xText")
         .attr("font-size", "20px") // original font was too small
         .attr("transform", `translate(0, ${height - margin.bottom})`) // x-axis line was showing on top
-        .selectAll("text")
+      .selectAll("text")
+        .transition()
+        .duration(1000)
         .attr("transform", "rotate(-25)")
         .attr("text-anchor", "end")
     }
@@ -125,9 +135,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
     svg
       .append("text")
-      .attr("class", "label")
+      .attr("class", "label ramenY")
       .attr("x", -height / 2 + 40)
-      .attr("y", -width * 0.05)
+      .attr("y", -width * 0.1)
       .attr("transform", "rotate(-90)")
       .attr("text-anchor", "middle")
 

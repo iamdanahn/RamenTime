@@ -1,4 +1,19 @@
 // RAMEN GRAPH
+.d3-ramen {
+    display: flex;
+  flex-direction: column;
+  justify-content: center;
+  h2 {
+    display: flex;
+    justify-content: center;
+  }
+
+  label {
+    position: relative;
+    left: 110px;
+    width: 140px; 
+  }
+}
 
 .yText {
   content: "Calories";
@@ -16,6 +31,19 @@
 }
 
 // EXERCISE GRAPH
+.d3-exercise {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  h2 {
+    display: flex;
+    justify-content: center;
+  }
+  .e-btn-cntr {
+    display: flex;
+    justify-content: space-around;
+  }
+}
 .xAxis.exercise {
   font-size: 20px;
 
