@@ -1,9 +1,9 @@
-Exercise,Calories burned / min (low),Calories burned / min (high),Calories
-Mountain Climbers,8,12,10
-Swimming (Casual),6.6,10,8.3
-Stationary Bike,7,10.5,8.75
-Walking,3.1,4.6,3.85
-Running,10.8,16,13.4
-Aerobic Dance,6.6,9.8,8.2
-Jumping Jacks,8,11.8,9.9
-Jumprope,7.6,9.8,8.7
+Exercise,Calories burned / min (low),Calories burned / min (high),Calories,Half,Hour
+Mountain Climbers,8,12,10,300,600
+Swimming (Casual),6.6,10,8.3,249,498
+Stationary Bike,7,10.5,8.75,262.5,525
+Walking,3.1,4.6,3.85,115.5,231
+Running,10.8,16,13.4,402,804
+Aerobic Dance,6.6,9.8,8.2,246,492
+Jumping Jacks,8,11.8,9.9,297,594
+Jumprope,7.6,9.8,8.7,261,522
