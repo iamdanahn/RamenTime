@@ -119,10 +119,10 @@ document.addEventListener("DOMContentLoaded", () => {
         .duration(800)
         .attr("y", (d) => y(d[`${time}`]))
         .attr("height", (d) => y(0) - y(d[`${time}`]))
-      // .delay(function (d, i) {
-      //   console.log(i)
-      //   return i * 100
-      // })
+        .delay(function (d, i) {
+          // console.log(i)
+          return i * 100
+        })
 
       u.exit().remove()
     })
