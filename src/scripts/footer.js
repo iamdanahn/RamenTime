@@ -1,3 +1,3 @@
 document.addEventListener("DOMContentLoaded", (event) => {
-  console.log(event)
+  const data = d3.csv("")
 })
