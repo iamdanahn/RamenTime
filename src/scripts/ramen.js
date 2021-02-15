@@ -110,7 +110,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     svg
       .selectAll("rect")
-      .on("mouseover", (e, d) => {
+      .on("mouseover", (e, d) => {  
         // e == mouse event
         tip.transition().duration(300).style("opacity", 0.8)
         // console.log(e)
