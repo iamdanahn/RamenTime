@@ -3,6 +3,7 @@ html {
   justify-content: center;
   background: rgba(231, 231, 231, 0.89);
   background-image: url("https://raw.githubusercontent.com/iamdanahn/RamenTime/main/assets/images/bg-wood1.jpg");
+  
 }
 
 body {
@@ -14,7 +15,7 @@ body {
   width: 1150px;
   height: 95vh;
   margin-top: 25px;
-
+  font-family: Rubik, serif;
 }
 
 .main-content {
@@ -26,6 +27,12 @@ body {
 .main-body {
   display: flex;
   width: 100%;
+  
+  h2 {
+    font-size: 24px;
+    display: block;
+    margin: 10px;
+  }
 }
 
 .d3-ramen {
