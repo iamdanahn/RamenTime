@@ -1,0 +1,16 @@
+.ramen-fact-cntr {
+  display: flex;
+  width: 75%;
+  justify-content: center;
+  
+  #ramen-fact {
+    display: flex;
+    justify-content: center;
+    width: 80%;
+
+    text {
+      text-align: center;
+    }
+  }
+
+}
