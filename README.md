@@ -1,4 +1,6 @@
-[Live Link!](https://iamdanahn.github.io/RamenTime/)
+![Live Link!](https://iamdanahn.github.io/RamenTime/)
+
+![Live Gif](https://github.com/iamdanahn/RamenTime/blob/main/assets/images/RamenTime.gif)
 
 # Background and Overview
 
