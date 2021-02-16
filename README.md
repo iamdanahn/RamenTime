@@ -1,10 +1,11 @@
+[Live Link!](https://iamdanahn.github.io/RamenTime/)
+
 # Background and Overview
 
 Data visualization of instant ramen and their nutrition facts
 
 # Functionality & MVPs
 
-- Display a carousel of ramen allowing a user to pick one
 - Selecting a ramen shows its nutrition facts
 - Show a bar chart with each nutrition to the Daily Rec Value
 - Display amount of exercise required to burn calories
@@ -24,6 +25,8 @@ If over/under, show percentage
 Day 1 - Learn D3!
 Day 2 - Collect Ramen nutrition facts and images. Organize into CSV files. Create Ramen Object and Nutrition Facts object
 Day 3 - Connect D3 to Ramen, Nutrition Facts tables
+Day 4 - Enable Ramen bars to slide/be interactive
+Day 5 - Styling
 
 # Bonus Features
 
