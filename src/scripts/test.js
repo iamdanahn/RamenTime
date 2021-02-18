@@ -84,10 +84,10 @@ const render = (data) => {
 
   // shows label on bottom
   function xAxis(g) {
-    debugger
+    // debugger
     g.call(
       d3.axisBottom(x).tickFormat((i) => {
-        debugger
+        // debugger
         return data[i].type
         // typeof i === "number" ? data[i].type : i
       }),
@@ -109,14 +109,14 @@ const render = (data) => {
   d3.select(".sorter").on("change", sort)
 
   const sortTimeout = setTimeout(() => {
-    debugger
+    // debugger
     d3.select("input").property("checked", true).each(sort)
   }, 500)
 
   function sort() {
     clearTimeout(sortTimeout)
 
-    debugger
+    // debugger
     const newX = x
       .domain(
         data

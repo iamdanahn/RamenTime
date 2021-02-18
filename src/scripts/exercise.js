@@ -27,7 +27,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   svg
     .append("text")
-    .attr("class", "label")
+    .attr("class", "label exercise")
     .attr("x", height / 2.5)
     .attr("y", -width * 1.1)
     .attr("transform", "rotate(90)")
@@ -64,7 +64,7 @@ document.addEventListener("DOMContentLoaded", () => {
       y.domain([
         0,
         d3.max(data, function (d) {
-          debugger
+          // debugger
           return d[`${time}`]
         }),
       ]).nice()
@@ -129,31 +129,9 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   d3.selectAll(".btn-exercise").on("click", function () {
-    debugger
+    // debugger
     update(this.value)
   })
 
   update("Calories")
 })
-
-// const bars = svg
-//   .append("g")
-
-//   .selectAll("rect")
-//   .data(data)
-//   .join("rect")
-//   .attr("class", "bar exercise")
-//   .attr("x", (d) => x(d.exercise)) // spreads bars over x axis
-//   .attr("y", (d) => y(d.calories))
-//   .attr("height", (d) => y(0) - y(d.calories))
-//   .attr("width", x.bandwidth())
-//   .on("mouseover", tip.show)
-//   .on("mouseout", tip.hide)
-
-// // call area to render features
-// svg.call(tip)
-// svg.append("g").call(xAxis)
-// svg.append("g").call(yAxis)
-// return svg.node()
-//   })
-// })

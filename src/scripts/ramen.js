@@ -49,7 +49,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // label on bottom
     function xAxis(g) {
-      debugger
+      // debugger
       g.call(d3.axisBottom(x))
         .attr("class", "xText")
         .attr("font-size", "20px") // original font was too small
@@ -110,7 +110,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     svg
       .selectAll("rect")
-      .on("mouseover", (e, d) => {  
+      .on("mouseover", (e, d) => {
         // e == mouse event
         tip.transition().duration(300).style("opacity", 0.8)
         // console.log(e)
@@ -159,14 +159,14 @@ document.addEventListener("DOMContentLoaded", () => {
     d3.select("input").on("change", sort)
 
     // const sortTimeout = setTimeout(() => {
-    //   debugger
+    //   // debugger
     //   d3.select("input").property("checked", true).each(sort)
     // }, 500)
 
     function sort() {
       // clearTimeout(sortTimeout)
 
-      debugger
+      // debugger
       const newX = x
         .domain(
           data

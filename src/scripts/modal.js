@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
 
   const modal = document.getElementsByClassName("modal")[0]
   const closer = document.getElementsByClassName("modal-close")[0]
-  debugger
+  // debugger
 
   closer.addEventListener("click", () => {
     modal.style.display = "none"
