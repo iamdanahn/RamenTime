@@ -59,12 +59,12 @@
 }
 
 .bar {
-  fill: orange;
+  fill: #fee379;
   mix-blend-mode: multiply;
 
   &:hover {
     opacity: 0.66;
-    cursor: pointer;
+    
   }
 }
 
@@ -74,11 +74,15 @@
   line-height: 1;
   font-weight: bold;
   padding: 10px;
-  color: black;
-  background-color: rgba(0, 0, 0, 0.3);
+  color: #fee379;
+  background-color: rgba(0, 0, 0, 1);
   border-radius: 2px;
   pointer-events: none;
   position: absolute;
+  font-size: 18px;
+  font-weight: 500 ;
+  font-variant: tabular-nums;
+  line-height: normal;
 
   &:after {
     box-sizing: border-box;

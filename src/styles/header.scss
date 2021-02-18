@@ -24,10 +24,14 @@ header {
 
     li {
       transition: 0.2s;
-
       &:hover {
         transform: scale(1.25);
         
+      }
+      
+      .fab, .far{
+        text-decoration: none;
+        color: darkslateblue
       }
     }
   }
