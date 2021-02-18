@@ -1,7 +1,8 @@
 .ramen-fact-cntr {
   display: flex;
   width: 75%;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
   
   #ramen-fact {
     display: flex;
@@ -10,5 +11,8 @@
     text-align: center;
 
   }
-
+  
+  .time-bar {
+    
+  }
 }
