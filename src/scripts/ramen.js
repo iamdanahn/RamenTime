@@ -21,9 +21,9 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     },
   ).then((data) => {
-    render(data)
-    console.log(data)
-  })
+		render(data);
+		// console.log(data)
+	})
 
   // data xfer from d4.csv promise
   const render = (data) => {

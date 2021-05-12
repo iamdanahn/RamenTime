@@ -46,10 +46,6 @@ document.addEventListener("DOMContentLoaded", (event) => {
           // move()
         }
       }
-      
-    
-
-
 
       ramenFact(0)
     })
